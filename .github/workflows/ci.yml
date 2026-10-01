@@ -1,0 +1,41 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  lint-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v4
+        with:
+          python-version: "3.12"
+      - name: Install dependencies
+        run: uv pip install --system -e ".[dev,server]"
+      - name: Lint with Ruff
+        run: ruff check good_neighbour tests scripts push_endpoint
+      - name: Run unit & workflow tests
+        run: pytest -m "not integration" -q
+      - name: Run live ADK evaluation (when GOOGLE_API_KEY secret is configured)
+        if: ${{ secrets.GOOGLE_API_KEY != '' }}
+        env:
+          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+          GOOGLE_GENAI_USE_ENTERPRISE: "FALSE"
+        run: adk eval good_neighbour eval/good_neighbour.evalset.json --config_file_path eval/eval_config.json --print_detailed_results
+
+  terraform-fmt:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
+      - name: Check Terraform formatting
+        working-directory: terraform
+        run: terraform fmt -check
+      - name: Validate Terraform configuration
+        working-directory: terraform
+        run: |
+          terraform init -backend=false
+          terraform validate

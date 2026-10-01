@@ -1,0 +1,6 @@
+project_id           = "your-gcp-project-id"
+region               = "us-central1"
+name_prefix          = "good-neighbour"
+enable_push_endpoint = false
+# agent_engine_id    = "1234567890"
+# push_endpoint_image = "us-central1-docker.pkg.dev/your-gcp-project-id/good-neighbour/push:latest"

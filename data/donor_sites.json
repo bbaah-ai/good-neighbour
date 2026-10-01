@@ -1,0 +1,17 @@
+{
+  "_note": "Known donor pickup sites for deterministic geocoding in demos. Coordinates are public landmarks; no private data.",
+  "sites": [
+    {"site_id": "site-path-food-court", "name": "PATH Food Court (First Canadian Place)", "aliases": ["path", "first canadian place", "fcp food court", "king and bay"], "address": "100 King St W, Toronto", "location": {"lat": 43.6487, "lng": -79.3817}, "site_type": "food-court"},
+    {"site_id": "site-mtcc", "name": "Metro Toronto Convention Centre", "aliases": ["mtcc", "convention centre", "convention center", "255 front"], "address": "255 Front St W, Toronto", "location": {"lat": 43.6426, "lng": -79.3871}, "site_type": "event-venue"},
+    {"site_id": "site-royal-york", "name": "Fairmont Royal York", "aliases": ["royal york", "fairmont", "100 front"], "address": "100 Front St W, Toronto", "location": {"lat": 43.6456, "lng": -79.3813}, "site_type": "hotel"},
+    {"site_id": "site-scotiabank-arena", "name": "Scotiabank Arena", "aliases": ["scotiabank arena", "the arena", "40 bay"], "address": "40 Bay St, Toronto", "location": {"lat": 43.6435, "lng": -79.3791}, "site_type": "event-venue"},
+    {"site_id": "site-st-lawrence-market", "name": "St. Lawrence Market", "aliases": ["st lawrence market", "st. lawrence", "south market", "93 front"], "address": "93 Front St E, Toronto", "location": {"lat": 43.6487, "lng": -79.3716}, "site_type": "market"},
+    {"site_id": "site-eaton-centre", "name": "CF Toronto Eaton Centre Urban Eatery", "aliases": ["eaton centre", "urban eatery", "220 yonge"], "address": "220 Yonge St, Toronto", "location": {"lat": 43.6544, "lng": -79.3807}, "site_type": "food-court"},
+    {"site_id": "site-uoft-dining", "name": "University of Toronto — New College Dining Hall", "aliases": ["u of t", "uoft", "new college", "university of toronto"], "address": "40 Willcocks St, Toronto", "location": {"lat": 43.6609, "lng": -79.3990}, "site_type": "institutional-kitchen"},
+    {"site_id": "site-tmu-dining", "name": "Toronto Metropolitan University — Pitman Hall", "aliases": ["tmu", "ryerson", "pitman hall", "toronto metropolitan"], "address": "160 Mutual St, Toronto", "location": {"lat": 43.6575, "lng": -79.3760}, "site_type": "institutional-kitchen"},
+    {"site_id": "site-hospital-row", "name": "University Ave Hospital Row (catering dock)", "aliases": ["hospital row", "university ave", "toronto general", "mount sinai", "sickkids"], "address": "585 University Ave, Toronto", "location": {"lat": 43.6580, "lng": -79.3885}, "site_type": "institutional-kitchen"},
+    {"site_id": "site-king-west-strip", "name": "King West Restaurant Strip", "aliases": ["king west", "entertainment district", "king and spadina"], "address": "King St W & Spadina Ave, Toronto", "location": {"lat": 43.6453, "lng": -79.3950}, "site_type": "restaurant-cluster"},
+    {"site_id": "site-kensington", "name": "Kensington Market", "aliases": ["kensington", "augusta ave", "baldwin st"], "address": "Augusta Ave & Baldwin St, Toronto", "location": {"lat": 43.6547, "lng": -79.4005}, "site_type": "market"},
+    {"site_id": "site-yorkville", "name": "Bloor–Yorkville Restaurant District", "aliases": ["yorkville", "bloor yorkville", "cumberland"], "address": "Cumberland St & Bellair St, Toronto", "location": {"lat": 43.6703, "lng": -79.3920}, "site_type": "restaurant-cluster"}
+  ]
+}

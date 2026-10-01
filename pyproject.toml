@@ -1,0 +1,62 @@
+[project]
+name = "good-neighbour"
+version = "0.1.0"
+description = "The Good Neighbour — open-source AI dispatch for surplus food, built on Google ADK 2.0."
+readme = "README.md"
+license = { text = "Apache-2.0" }
+requires-python = ">=3.11"
+authors = [{ name = "Brian Baah" }]
+keywords = ["adk", "agents", "gemini", "food-rescue", "agents-for-good"]
+dependencies = [
+  "google-adk[db]>=2.6",
+  "pydantic>=2.7",
+  "python-json-logger>=3.1",
+  "opentelemetry-api>=1.27",
+  "opentelemetry-sdk>=1.27",
+  "aiosqlite>=0.20",
+  "python-dotenv>=1.0",
+]
+
+[project.optional-dependencies]
+gcp = [
+  "google-adk[gcp]>=2.6",
+  "google-cloud-secret-manager>=2.20",
+  "google-cloud-pubsub>=2.23",
+  "opentelemetry-exporter-gcp-trace>=1.7",
+]
+server = [
+  "fastapi>=0.115",
+  "uvicorn[standard]>=0.30",
+]
+dev = [
+  "pytest>=8.2",
+  "pytest-asyncio>=0.24",
+  "ruff>=0.6",
+  "mypy>=1.11",
+]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+markers = [
+  "integration: tests that call a real Gemini model (require GOOGLE_API_KEY or Vertex ADC)",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "N", "D"]
+ignore = ["D100", "D104", "D203", "D213"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["D"]
+"scripts/*" = ["D"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["good_neighbour"]

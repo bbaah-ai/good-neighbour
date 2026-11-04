@@ -9,9 +9,17 @@
 
 ## 1. Why This Exists
 
-Commercial kitchens, food courts, convention centres, and hotels generate surplus edible food on tight clocks (`"55 hot trays of braised beef at MTCC South Building — must move within 2 hours"`). Existing food-rescue marketplaces work well for scheduled retail pallets, but **small, perishable, prepared-food lots often expire while waiting for someone to manually parse a text message, check cold-storage capacity, calculate safe holding windows, and phone nearby drop-ins.**
+**Toronto food banks logged a record 4.1M visits (Apr 2024–Mar 2025, *Who's Hungry 2025*), while downtown kitchens throw out edible food ~1.5 km from the drop-ins that need it.** The gap isn't supply. It's the match. Scheduled pallets move fine, but a perishable lot like `"55 hot trays at MTCC South, must move within 2 hours"` often spoils while someone reads the text, checks fridge space, works out a safe holding window, and phones around.
 
-**The Good Neighbour** is open, vendor-neutral agent infrastructure that any Business Improvement Area (BIA), venue consortium, or community network can run:
+**The design principle: code owns the rules, Gemini handles language and judgment, and people make the final call.**
+
+| | Small, shelf-stable lot | Perishable or large lot |
+|---|---|---|
+| **Path** | Screen → Gemini Flash reads it → code routes → auto-match → dispatch | Screen → Flash reads it → code routes → Flash matches → **Gemini Pro safety review** → **human approval** → dispatch |
+| **Model calls after intake** | None | Two (Flash and Pro) |
+| **Target time to match** | Under 10 minutes | Under 45 minutes |
+
+**The Good Neighbour** is open, vendor-neutral agent infrastructure that a Business Improvement Area (BIA), venue group, or drop-in network can run. A 90-day Downtown Toronto pilot is proposed in the companion deck (*The Good Neighbour: Downtown Toronto Pilot*). The six workflow stages:
 
 1. **Pre-LLM Security Screen (`screen_submission`)** — Deterministically scrubs PII (`EMAIL`, `PHONE`, `CARD`, `GOV_ID`, `POSTAL_CODE`) and blocks prompt-injection heuristics *before* any model call.
 2. **Structured Triage (`triage_agent`, Gemini 2.5 Flash)** — Normalizes messy donor text or Pub/Sub JSON into a strict `DonationTriage` schema and resolves landmark venues via `lookup_donor_site`.
